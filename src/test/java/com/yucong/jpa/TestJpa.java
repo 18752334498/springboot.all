@@ -3,6 +3,11 @@ package com.yucong.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +101,17 @@ public class TestJpa {
 		System.out.println("此页多少条：	" + page.getNumber());
 		System.out.println("数据总数：	" + page.getTotalElements());
 		System.out.println("一共几页：	" + page.getTotalPages());
+	}
+
+	@PersistenceContext
+	private EntityManager entitymanager;
+	@Test
+	@Transactional
+	public void test_entityManager() {
+
+		Query query = entitymanager.createNativeQuery("update user set name = 'Zhangsan' where id = 1");
+		int i = query.executeUpdate();
+		System.out.println("dddddddd:  " + i);
 	}
 
 }
