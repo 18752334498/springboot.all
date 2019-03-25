@@ -161,6 +161,8 @@ public class GoodsInfo {
         this.updateTime = updateTime;
     }
 
-
-    
+    @Override
+    public String toString() {
+        return  brand ;
+    }
 }

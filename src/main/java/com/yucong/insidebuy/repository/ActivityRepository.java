@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.yucong.insidebuy.entity.Activity;
 
 @Repository
-public interface BuyRepository extends JpaRepository<Activity, Long> {
+public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
 }

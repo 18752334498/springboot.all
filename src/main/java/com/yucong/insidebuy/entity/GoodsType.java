@@ -73,5 +73,9 @@ public class GoodsType {
         this.typeOrder = typeOrder;
     }
 
+    @Override
+    public String toString() {
+        return goodsType + goodsInfos;
+    }
 
 }
