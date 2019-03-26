@@ -119,11 +119,12 @@ public class TestInsideBuy {
     }
 
     /**
-     * <span>在购物车添加商品</span>
-     * 
-     * @Author: yucong
-     * @Since: 2019年3月26日
-     */
+	 * <h3>在列表页面点击某个商品产看详情，点击加入购物车按钮，触发在购物车添加商品事件</h3>
+	 * <h3>客户端传参：添加商品数量，用户ID，商品ID，商品型号ID</h3>
+	 * 
+	 * @Author: yucong
+	 * @Since: 2019年3月26日
+	 */
     @Test
     public void test_saveShoppingCart() {
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -141,16 +142,41 @@ public class TestInsideBuy {
     }
 
     /**
-     * <span>购物车接口</span>
-     * 
-     * @Author: yucong
-     * @Since: 2019年3月26日
-     */
+	 * <h3>购物车接口</h3>
+	 * <h3>此外，在购物车有修改和删除功能</h3>
+	 * 
+	 * @Author: yucong
+	 * @Since: 2019年3月26日
+	 */
     @Test
     public void test_findShoppingCartList() {
         List<Map<String, Object>> list = shoppingCartService.findShoppingCartList();
         System.out.println(JSON.toJSONString(list));
     }
+
+	/**
+	 * <h3>点击购物车后，对商品进行删除</h3>
+	 *
+	 * @Author: yucong
+	 * @Since: 2019年3月26日
+	 */
+	@Test
+	public void test_deleteShoppingByCartId() {
+		List<Map<String, Object>> list = shoppingCartService.findShoppingCartList();
+		System.out.println(JSON.toJSONString(list));
+	}
+
+	/**
+	 * <h3>点击购物车后，对商品进行更新</h3>
+	 *
+	 * @Author: yucong
+	 * @Since: 2019年3月26日
+	 */
+	@Test
+	public void test_updateShoppingByCartId() {
+		List<Map<String, Object>> list = shoppingCartService.findShoppingCartList();
+		System.out.println(JSON.toJSONString(list));
+	}
 
 
     /**
