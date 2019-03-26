@@ -1,15 +1,12 @@
 package com.yucong.insidebuy.entity;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vwt_ins_goods_type")
-public class GoodsType {
+public class GoodsType implements Serializable {
 
     /** 主键 */
     @Id
@@ -29,9 +26,9 @@ public class GoodsType {
     @SequenceGenerator(name = "vwt_ins_goods_type_gen", sequenceName = "vwt_ins_goods_type_seq")
     private Long id;
 
-    /** 一个商品类型下有多个商品 */
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "goodsType")
-    private List<GoodsInfo> goodsInfos;
+    // 一个商品类型下有多个商品
+    // @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "goodsType")
+    // private List<GoodsInfo> goodsInfos;
 
     /** 商品类别 */
     @Column(name = "goods_type")
@@ -47,14 +44,6 @@ public class GoodsType {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<GoodsInfo> getGoodsInfos() {
-        return goodsInfos;
-    }
-
-    public void setGoodsInfos(List<GoodsInfo> goodsInfos) {
-        this.goodsInfos = goodsInfos;
     }
 
     public String getGoodsType() {
@@ -75,7 +64,7 @@ public class GoodsType {
 
     @Override
     public String toString() {
-        return goodsType + goodsInfos;
+        return "[" + goodsType + typeOrder + "]";
     }
 
 }

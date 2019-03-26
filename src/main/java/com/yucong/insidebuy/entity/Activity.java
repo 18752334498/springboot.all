@@ -1,5 +1,6 @@
 package com.yucong.insidebuy.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vwt_ins_activity")
-public class Activity {
+public class Activity implements Serializable{
 
     /** 主键 */
     @Id
@@ -42,6 +43,10 @@ public class Activity {
     /** 活动结束说明 */
     @Column(name = "end_introduce", length = 500, nullable = false)
     private String endIntroduce;
+
+    /** 每个用户限购总数量 */
+    @Column(name = "limit_total")
+    private Integer limitTotal;
 
     public Long getId() {
         return id;
@@ -81,6 +86,14 @@ public class Activity {
 
     public void setEndIntroduce(String endIntroduce) {
         this.endIntroduce = endIntroduce;
+    }
+
+    public Integer getLimitTotal() {
+        return limitTotal;
+    }
+
+    public void setLimitTotal(Integer limitTotal) {
+        this.limitTotal = limitTotal;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.yucong.insidebuy.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vwt_ins_shopping_cart")
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 
     /** 主键 */
     @Id

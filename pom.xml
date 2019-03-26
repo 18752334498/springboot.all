@@ -44,11 +44,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.royasoft.core</groupId>
+			<artifactId>core-tools-utils</artifactId>
+			<version>v1.1.1_snapshots</version>
+		</dependency>
+		<dependency>
+			<groupId>com.royasoft.core</groupId>
+			<artifactId>core-tools-common</artifactId>
+			<version>v1.1.1_snapshots</version>
+		</dependency>
 
 		<!--MySql -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
 		</dependency>
 
 	</dependencies>

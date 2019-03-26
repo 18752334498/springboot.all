@@ -1,8 +1,11 @@
 package com.yucong.insidebuy.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,16 +22,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vwt_ins_goods_model")
-public class GoodsModel {
-    
+public class GoodsModel implements Serializable {
+
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_model_gen")
     @SequenceGenerator(name = "vwt_ins_goods_model_gen", sequenceName = "vwt_ins_goods_model_seq")
     private Long id;
 
+
     /** 商品信息ID */
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "goods_info_id")
     private GoodsInfo goodsInfo;
 
@@ -54,14 +58,6 @@ public class GoodsModel {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public GoodsInfo getGoodsInfo() {
-        return goodsInfo;
-    }
-
-    public void setGoodsInfo(GoodsInfo goodsInfo) {
-        this.goodsInfo = goodsInfo;
     }
 
     public String getGoodsModel() {

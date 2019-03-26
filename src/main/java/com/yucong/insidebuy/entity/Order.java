@@ -1,5 +1,6 @@
 package com.yucong.insidebuy.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vwt_ins_order")
-public class Order {
+public class Order implements Serializable {
 
     /** 主键 */
     @Id

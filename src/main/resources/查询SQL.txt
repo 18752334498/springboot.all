@@ -1,0 +1,34 @@
+select type.goods_type,
+	   info.goods_name,info.description, info.picture, info.model_num,
+	   model.discount_price, model.market_price,
+	   buy.limit_count
+from vwt_ins_goods_info info 
+join vwt_ins_goods_type type on info.goods_type_id = type.id
+join vwt_ins_goods_model model on model.goods_info_id = info.id
+left join vwt_ins_buy_limit buy on buy.goods_model_num = info.model_num
+where info.status = 1 order by type.type_order, info.goods_num, info.update_time;
+===============================================================================
+select i.goods_name,i.description, i.picture,i.id as goods_info_id,
+       m.discount_price, m.market_price, m.goods_model, m.inventory,m.id as goods_model_id,
+       buy.limit_count
+from vwt_ins_goods_info i 
+join vwt_ins_goods_model m on m.goods_info_id = i.id
+left join vwt_ins_buy_limit buy on buy.goods_model_num = i.model_num
+where i.status = 1 and i.model_num = 'AABB';
+===============================================================================
+select cart.goods_count,
+info.description, info.goods_name, info.model_num, info.picture, info.status,
+model.inventory, model.discount_price, model.goods_model
+from vwt_ins_shopping_cart cart
+join vwt_ins_goods_info info on cart.goods_info_id = info.id
+join vwt_ins_goods_model model on cart.goods_model_id = model.id
+where cart.phone_id = '18752334498'
+===============================================================================
+select i.description, i.goods_name, i.model_num, i.picture, i.status,
+m.discount_price, m.goods_model, m.inventory,
+o.address, o.business_hall, o.create_time, o.goods_count, o.order_group, o.phone_id,
+o.phone_num, o.username
+from vwt_ins_order o
+join vwt_ins_goods_info i on o.goods_info_id = i.id
+join vwt_ins_goods_model m on o.goods_model_id = m.id
+where o.phone_id = '18752334498' order by o.create_time

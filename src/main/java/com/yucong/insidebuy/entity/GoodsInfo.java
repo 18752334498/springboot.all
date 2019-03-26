@@ -1,5 +1,6 @@
 package com.yucong.insidebuy.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,7 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vwt_ins_goods_info")
-public class GoodsInfo {
+public class GoodsInfo implements Serializable {
     
     /** 主键 */
     @Id
@@ -37,8 +39,9 @@ public class GoodsInfo {
     private Long goodsNum;
 
     /** 机型编码 */
-    @Column(name = "model_num", length = 50)
-    private String modelNum;
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "model_num", referencedColumnName = "goods_model_num")
+    private BuyLimit buyLimit;
 
     /** 商品名称 */
     @Column(name = "goods_name", length = 50)
@@ -89,12 +92,12 @@ public class GoodsInfo {
         this.goodsNum = goodsNum;
     }
 
-    public String getModelNum() {
-        return modelNum;
+    public BuyLimit getBuyLimit() {
+        return buyLimit;
     }
 
-    public void setModelNum(String modelNum) {
-        this.modelNum = modelNum;
+    public void setBuyLimit(BuyLimit buyLimit) {
+        this.buyLimit = buyLimit;
     }
 
     public String getGoodsName() {
@@ -161,8 +164,4 @@ public class GoodsInfo {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return  brand ;
-    }
 }
