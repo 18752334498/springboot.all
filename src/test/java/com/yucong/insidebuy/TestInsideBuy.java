@@ -162,8 +162,8 @@ public class TestInsideBuy {
 	 */
 	@Test
 	public void test_deleteShoppingByCartId() {
-		List<Map<String, Object>> list = shoppingCartService.findShoppingCartList();
-		System.out.println(JSON.toJSONString(list));
+		Long cartId = 1l;
+		shoppingCartRepository.deleteById(cartId);
 	}
 
 	/**
@@ -174,8 +174,6 @@ public class TestInsideBuy {
 	 */
 	@Test
 	public void test_updateShoppingByCartId() {
-		List<Map<String, Object>> list = shoppingCartService.findShoppingCartList();
-		System.out.println(JSON.toJSONString(list));
 	}
 
 
