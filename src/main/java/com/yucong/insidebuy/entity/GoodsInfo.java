@@ -28,6 +28,8 @@ import javax.persistence.Table;
 @Table(name = "vwt_ins_goods_info")
 public class GoodsInfo implements Serializable {
     
+    private static final long serialVersionUID = 6583568123375399707L;
+
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_info_gen")

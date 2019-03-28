@@ -20,6 +20,8 @@ import javax.persistence.Table;
 @Table(name = "vwt_ins_buy_limit")
 public class BuyLimit implements Serializable {
 
+    private static final long serialVersionUID = -3140445298329857890L;
+
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_buy_limit_gen")

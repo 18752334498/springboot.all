@@ -20,7 +20,7 @@ public class GoodsInfoService {
     public List<Map<String, Object>> findGoodsList() {
         StringBuffer sql = new StringBuffer();
         sql.append("select type.goods_type, ");
-        sql.append("info.goods_name,info.description, info.picture, info.model_num, ");
+		sql.append("info.goods_name,info.description, info.picture, info.model_num, info.id as goods_info_id, ");
         sql.append("model.discount_price, model.market_price, ");
         sql.append("buy.limit_count ");
         sql.append("from vwt_ins_goods_info info ");

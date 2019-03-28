@@ -22,6 +22,8 @@ import javax.persistence.Table;
 @Table(name = "vwt_ins_activity")
 public class Activity implements Serializable{
 
+    private static final long serialVersionUID = 1670198930894079950L;
+
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_activity_gen")

@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,6 +25,8 @@ import javax.persistence.Table;
 @Table(name = "vwt_ins_order")
 public class Order implements Serializable {
 
+    private static final long serialVersionUID = 1579942579968721745L;
+
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_order_gen")
@@ -36,12 +38,12 @@ public class Order implements Serializable {
     private Long phoneId;
 
     /** 商品ID */
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "goods_info_id")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "goods_info_id", referencedColumnName = "")
     private GoodsInfo goodsInfo;
 
     /** 商品型号ID */
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "goods_model_id")
     private GoodsModel goodsModel;
 

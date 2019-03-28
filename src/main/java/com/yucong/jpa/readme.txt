@@ -12,3 +12,6 @@ Spring Data 提供了默认的事务处理方式，即所有的查询均声明�
 Consider defining a bean named 'entityManagerFactory' in your configuration.
 hibernate和jpa的jar包冲突了
 删除 \repository\org\hibernate\hibernate-core目录下的文件，然后maven - update project即可
+
+事务管理只有在service加上事务管理才起作用,query不需要事务管理但是delete update modify都需要事务管理。
+为了不在service层不加事务管理可以在repository层的delete update modify加上@transactional 但这样不能真正保持事务的完整性

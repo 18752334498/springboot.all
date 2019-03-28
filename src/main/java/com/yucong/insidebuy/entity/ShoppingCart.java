@@ -24,6 +24,8 @@ import javax.persistence.Table;
 @Table(name = "vwt_ins_shopping_cart")
 public class ShoppingCart implements Serializable {
 
+    private static final long serialVersionUID = -177499962592407216L;
+
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_shopping_cart_gen")
