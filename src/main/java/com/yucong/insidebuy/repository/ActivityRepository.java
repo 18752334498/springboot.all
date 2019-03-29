@@ -13,7 +13,7 @@ import com.yucong.insidebuy.entity.Activity;
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
-    @Query("select a from Activity a where a.endTime > :nowTime")
-    public List<Activity> findActivityByEndTime(@Param("nowTime") Date nowTime);
+	@Query("select a from Activity a where a.endTime > :nowTime")
+	public List<Activity> findActivityByEndTime(@Param("nowTime") Date nowTime);
 
 }

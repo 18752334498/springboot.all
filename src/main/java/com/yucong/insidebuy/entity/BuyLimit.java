@@ -20,44 +20,44 @@ import javax.persistence.Table;
 @Table(name = "vwt_ins_buy_limit")
 public class BuyLimit implements Serializable {
 
-    private static final long serialVersionUID = -3140445298329857890L;
+	private static final long serialVersionUID = -3140445298329857890L;
 
-    /** 主键 */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_buy_limit_gen")
-    @SequenceGenerator(name = "vwt_ins_buy_limit_gen", sequenceName = "vwt_ins_buy_limit_seq")
-    private Long id;
+	/** 主键 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_buy_limit_gen")
+	@SequenceGenerator(name = "vwt_ins_buy_limit_gen", sequenceName = "vwt_ins_buy_limit_seq")
+	private Long id;
 
-    /** 商品机型编码 */
-    @Column(name = "goods_model_num")
-    private String goodsModelNum;
+	/** 商品机型编码 */
+	@Column(name = "goods_model_num")
+	private String goodsModelNum;
 
-    /** 限购数量 */
-    @Column(name = "limit_count")
-    private Integer limitCount;
+	/** 限购数量 */
+	@Column(name = "limit_count")
+	private Integer limitCount;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getGoodsModelNum() {
-        return goodsModelNum;
-    }
+	public String getGoodsModelNum() {
+		return goodsModelNum;
+	}
 
-    public void setGoodsModelNum(String goodsModelNum) {
-        this.goodsModelNum = goodsModelNum;
-    }
+	public void setGoodsModelNum(String goodsModelNum) {
+		this.goodsModelNum = goodsModelNum;
+	}
 
-    public Integer getLimitCount() {
-        return limitCount;
-    }
+	public Integer getLimitCount() {
+		return limitCount;
+	}
 
-    public void setLimitCount(Integer limitCount) {
-        this.limitCount = limitCount;
-    }
+	public void setLimitCount(Integer limitCount) {
+		this.limitCount = limitCount;
+	}
 
 }

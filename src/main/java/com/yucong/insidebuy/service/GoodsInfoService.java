@@ -1,5 +1,6 @@
 package com.yucong.insidebuy.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,9 +8,17 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.royasoft.core.tools.common.dao.QueryUtils;
+import com.yucong.insidebuy.entity.BuyLimit;
+import com.yucong.insidebuy.entity.GoodsInfo;
+import com.yucong.insidebuy.entity.GoodsType;
+import com.yucong.insidebuy.repository.GoodsInfoRepository;
 
 @Service
 public class GoodsInfoService {
@@ -32,8 +41,45 @@ public class GoodsInfoService {
         return QueryUtils.queryForMap(manager, sql.toString(), new HashMap<>());
     }
 
-    public void countshoppingCart() {
+	@Autowired
+	private GoodsInfoRepository goodsInfoRepository;
 
+	@Transactional(isolation = Isolation.SERIALIZABLE)
+	public void updateGoodsForManager() {
+		GoodsInfo goodsInfo = getGoodsInfo();
+		goodsInfo.setId(52l);
+		goodsInfo.setGoodsNum(3543543l);
+
+		goodsInfoRepository.save(goodsInfo);
     }
+
+	public static GoodsInfo getGoodsInfo() {
+		GoodsInfo g = new GoodsInfo();
+		BuyLimit buyLimit = new BuyLimit();
+		GoodsType goodsType = new GoodsType();
+		buyLimit.setGoodsModelNum("gghhjjkk");
+		goodsType.setId(1l);
+
+		// 必填
+		g.setBuyLimit(buyLimit);
+		g.setGoodsType(goodsType);
+		g.setDescription("bigger than bigger");
+		g.setGoodsName("honor10");
+		g.setPicture("/aa/ss/magic.png");
+
+		// 默认上架，即 1
+		g.setStatus(1);
+
+		// 选填
+		g.setBrand("honor");
+		g.setGoodsNum(1l);
+
+		// 自定义
+		g.setUpdateTime(new Date());
+
+		System.out.println(JSON.toJSONString(g));
+
+		return g;
+	}
 
 }

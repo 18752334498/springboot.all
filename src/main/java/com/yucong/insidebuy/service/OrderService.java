@@ -44,16 +44,6 @@ public class OrderService {
 	// 查出各种限制条件
 	public Map<String, Object> queryAllLimitCount(Long goodsInfoId, Long goodsModelId) {
 		
-//		select 
-//		6 as preBuyCount, 
-//		SUM(o.goods_count) as orderedCount, 
-//		(6+SUM(o.goods_count)) as totalCount,
-//		(select a.limit_total as actCount from vwt_ins_activity a) as actLimitCount,
-//		(select m.inventory from vwt_ins_goods_model m where m.id = 1) as inventory,
-//		(select b.limit_count from vwt_ins_goods_info i join vwt_ins_buy_limit b on i.model_num = b.goods_model_num where i.id = 1) modelLimitCount
-//		from vwt_ins_order o where o.phone_id = 18752334498 and o.goods_info_id = 1
-		
-
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append("select ");

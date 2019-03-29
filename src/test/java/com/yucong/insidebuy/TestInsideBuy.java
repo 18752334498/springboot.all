@@ -28,7 +28,6 @@ import com.yucong.insidebuy.entity.Order;
 import com.yucong.insidebuy.entity.ShoppingCart;
 import com.yucong.insidebuy.repository.ActivityRepository;
 import com.yucong.insidebuy.repository.GoodsModelRepository;
-import com.yucong.insidebuy.repository.ModelRepository;
 import com.yucong.insidebuy.repository.OrderRepository;
 import com.yucong.insidebuy.repository.ShoppingCartRepository;
 import com.yucong.insidebuy.repository.TypeRepository;
@@ -57,8 +56,6 @@ public class TestInsideBuy {
 	private OrderService orderService;
 	@Autowired
 	private OrderRepository orderRepository;
-	@Autowired
-	private ModelRepository modelRepository;
 	@Autowired
 	private GoodsModelRepository goodsModelRepository;
 
@@ -263,10 +260,10 @@ public class TestInsideBuy {
 	 * @Since: 2019年3月26日
 	 */
 	@Test
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public void test_saveOrders() {
-		String aa = "{\"orders\":[{\"goodsInfoId\":\"1\",\"goodsModelId\":\"1\",\"goodsCount\":\"2\",\"phoneId\":\"18752334498\"},"
-				               + "{\"goodsInfoId\":\"1\",\"goodsModelId\":\"2\",\"goodsCount\":\"22\",\"phoneId\":\"18752334498\"}],"
+		String aa = "{\"orders\":[{\"goodsInfoId\":\"1\",\"goodsModelId\":\"1\",\"goodsCount\":\"3\",\"phoneId\":\"18752334498\"},"
+				+ "{\"goodsInfoId\":\"1\",\"goodsModelId\":\"2\",\"goodsCount\":\"1\",\"phoneId\":\"18752334498\"}],"
 				+ "\"info\":{\"address\":\"nanjing\",\"businessHall\":\"yuhuatai\",\"phoneNum\":\"18752334498\",\"username\":\"Tony\"}}";
 
 		JSONObject jsonObject = JSONObject.parseObject(aa);
@@ -312,6 +309,7 @@ public class TestInsideBuy {
 			orderRepository.save(order);
 			System.out.println("==================== success ====================");
 		}
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -402,7 +400,8 @@ public class TestInsideBuy {
 
 		// 根据 goodsModelId 找到对应的产品型号，在库存上加 goodsCount
 		for (JSONObject map : list) {
-			int count = modelRepository.updateGoodsCountById(map.getLong("goodsModelId"), map.getInteger("goodsCount"));
+			int count = goodsModelRepository.updateGoodsCountById(map.getLong("goodsModelId"),
+					map.getInteger("goodsCount"));
 			System.out.println("修改了： " + count);
 		}
 

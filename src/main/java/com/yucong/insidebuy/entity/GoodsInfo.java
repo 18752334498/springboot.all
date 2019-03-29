@@ -41,7 +41,7 @@ public class GoodsInfo implements Serializable {
     private Long goodsNum;
 
     /** 机型编码 */
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @JoinColumn(name = "model_num", referencedColumnName = "goods_model_num")
     private BuyLimit buyLimit;
 

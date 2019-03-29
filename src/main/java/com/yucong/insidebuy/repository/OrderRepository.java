@@ -13,7 +13,7 @@ import com.yucong.insidebuy.entity.Order;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
 
-    @Modifying
+	@Modifying
     @Transactional
 	@Query(nativeQuery = true, value = "delete from vwt_ins_order where order_group = :orderGroup")
 	int deleteByOrderGroup(@Param("orderGroup") String orderGroup);
