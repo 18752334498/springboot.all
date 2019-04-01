@@ -1,5 +1,7 @@
 package com.yucong.insidebuy.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +27,11 @@ public interface GoodsModelRepository extends JpaRepository<GoodsModel, Long> {
 	@Modifying
 	@Query("update GoodsModel m set m.inventory = (m.inventory + :goodsCount) where id = :goodsModelId")
 	int updateGoodsCountById(@Param("goodsModelId") Long goodsModelId, @Param("goodsCount") Integer goodsCount);
+
+	Optional<GoodsModel> findById(Long goodsModelId);
+
+	@Modifying
+	@Query("delete from GoodsModel g where g.goodsInfoId = :goodsInfoId")
+	int deleteGoodsModelByGoodsInfoId(@Param("goodsInfoId") Long goodsInfoId);
 
 }

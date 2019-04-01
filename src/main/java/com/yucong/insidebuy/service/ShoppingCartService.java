@@ -27,7 +27,7 @@ public class ShoppingCartService {
     public List<Map<String, Object>> findShoppingCartList() {
 
         StringBuffer sql = new StringBuffer();
-        sql.append("select cart.goods_count, ");
+		sql.append("select cart.goods_count, cart.id as cart_id, ");
         sql.append("info.description, info.goods_name, info.model_num, info.picture, info.status, ");
         sql.append("model.inventory, model.discount_price, model.goods_model ");
         sql.append("from vwt_ins_shopping_cart cart ");

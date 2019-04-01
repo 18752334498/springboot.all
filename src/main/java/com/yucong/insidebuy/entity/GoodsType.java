@@ -24,13 +24,9 @@ public class GoodsType implements Serializable {
 
     /** 主键 */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_type_gen")
-    @SequenceGenerator(name = "vwt_ins_goods_type_gen", sequenceName = "vwt_ins_goods_type_seq")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_type_gen")
+	@SequenceGenerator(name = "vwt_ins_goods_type_gen", sequenceName = "vwt_ins_goods_type_seq", allocationSize = 1)
     private Long id;
-
-    // 一个商品类型下有多个商品
-    // @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "goodsType")
-    // private List<GoodsInfo> goodsInfos;
 
     /** 商品类别 */
     @Column(name = "goods_type")

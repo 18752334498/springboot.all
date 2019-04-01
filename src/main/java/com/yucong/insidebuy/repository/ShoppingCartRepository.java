@@ -25,4 +25,5 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
 	public ShoppingCart findByPhoneInfoModelId(@Param("phoneId") Long phoneId, @Param("goodsInfoId") Long goodsInfoId,
 			@Param("goodsModelId") Long goodsModelId);
 
+
 }

@@ -2,15 +2,11 @@ package com.yucong.insidebuy.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,18 +22,16 @@ public class GoodsModel implements Serializable {
 
     private static final long serialVersionUID = -3159244439177202138L;
 
-
     /** 主键 */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_model_gen")
-    @SequenceGenerator(name = "vwt_ins_goods_model_gen", sequenceName = "vwt_ins_goods_model_seq")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_model_gen")
+	@SequenceGenerator(name = "vwt_ins_goods_model_gen", sequenceName = "vwt_ins_goods_model_seq", allocationSize = 1)
     private Long id;
 
 
     /** 商品信息ID */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "goods_info_id")
-    private GoodsInfo goodsInfo;
+	@Column(name = "goods_info_id")
+	private Long goodsInfoId;
 
     /** 商品型号 */
     @Column(name = "goods_model", length = 20)
@@ -55,44 +49,52 @@ public class GoodsModel implements Serializable {
     @Column(name = "inventory")
     private Integer inventory;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getGoodsModel() {
-        return goodsModel;
-    }
+	public Long getGoodsInfoId() {
+		return goodsInfoId;
+	}
 
-    public void setGoodsModel(String goodsModel) {
-        this.goodsModel = goodsModel;
-    }
+	public void setGoodsInfoId(Long goodsInfoId) {
+		this.goodsInfoId = goodsInfoId;
+	}
 
-    public Double getMarketPrice() {
-        return marketPrice;
-    }
+	public String getGoodsModel() {
+		return goodsModel;
+	}
 
-    public void setMarketPrice(Double marketPrice) {
-        this.marketPrice = marketPrice;
-    }
+	public void setGoodsModel(String goodsModel) {
+		this.goodsModel = goodsModel;
+	}
 
-    public Double getDiscountPrice() {
-        return discountPrice;
-    }
+	public Double getMarketPrice() {
+		return marketPrice;
+	}
 
-    public void setDiscountPrice(Double discountPrice) {
-        this.discountPrice = discountPrice;
-    }
+	public void setMarketPrice(Double marketPrice) {
+		this.marketPrice = marketPrice;
+	}
 
-    public Integer getInventory() {
-        return inventory;
-    }
+	public Double getDiscountPrice() {
+		return discountPrice;
+	}
 
-    public void setInventory(Integer inventory) {
-        this.inventory = inventory;
-    }
+	public void setDiscountPrice(Double discountPrice) {
+		this.discountPrice = discountPrice;
+	}
+
+	public Integer getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Integer inventory) {
+		this.inventory = inventory;
+	}
 
 }

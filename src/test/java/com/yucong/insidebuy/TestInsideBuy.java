@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yucong.App;
 import com.yucong.insidebuy.entity.Activity;
 import com.yucong.insidebuy.entity.GoodsInfo;
@@ -81,23 +82,6 @@ public class TestInsideBuy {
 
 		List<Map<String, Object>> list = goodsInfoService.findGoodsList();
 
-//        List<String> goodsNames = list.stream().map(m -> String.valueOf(m.get("goods_name"))).distinct().collect(Collectors.toList());
-//        System.out.println(goodsNames);
-//        List<Map<String, Object>> newList = new ArrayList<>();
-//        for (String goodsName : goodsNames) {
-//            Map<String, Object> map = list.stream().filter(m -> goodsName.equals(m.get("goods_name"))).collect(Collectors.toList()).get(0);
-//            newList.add(map);
-//        }
-//
-//        List<Object> data = new ArrayList<>();
-//        List<String> goodsTypes = list.stream().map(m -> String.valueOf(m.get("goods_type"))).distinct().collect(Collectors.toList());
-//        System.out.println(goodsTypes);
-//        for (String goodsType : goodsTypes) {
-//            List<Map<String, Object>> collect = newList.stream().filter(m -> goodsType.equals(m.get("goods_type"))).collect(Collectors.toList());
-//            data.add(collect);
-//        }
-
-		// Map<String, Object> result = new HashMap<>();
 		JSONObject result = new JSONObject();
 
 		result.put("data", dataProcess(list));
@@ -110,7 +94,7 @@ public class TestInsideBuy {
 		System.out.println("活动说明： " + activity.getStartIntroduce());
 		result.put("activity", activity.getStartIntroduce());
 
-		System.out.println(JSON.toJSON(result));
+		System.out.println(JSON.toJSONString(result, SerializerFeature.WriteMapNullValue));
 	}
 
 	/**
@@ -122,8 +106,6 @@ public class TestInsideBuy {
 	@Test
 	public void test_findGoodsDetail() {
 		List<Map<String, Object>> list = goodsDetailService.findGoodsDetail();
-		// List<String> goodsModel = list.stream().map(m ->
-		// String.valueOf(m.get("goods_model"))).collect(Collectors.toList());
 
 		List<String> goodsModel = new ArrayList<>();
 		for (Map<String, Object> map : list) {
@@ -133,7 +115,7 @@ public class TestInsideBuy {
 		JSONObject result = new JSONObject();
 		result.put("data", list);
 		result.put("model", goodsModel);
-		System.out.println(result);
+		System.out.println(JSON.toJSONString(result, SerializerFeature.WriteMapNullValue));
 	}
 
 	/**
@@ -250,7 +232,7 @@ public class TestInsideBuy {
 		for (String orderGroup : orderGroups) {
 			result.add(list.stream().filter(m -> orderGroup.equals(m.get("order_group"))).collect(Collectors.toList()));
 		}
-		System.out.println(JSON.toJSONString(result));
+		System.out.println(JSON.toJSONString(result, SerializerFeature.WriteMapNullValue));
 	}
 
 	/**
@@ -386,8 +368,8 @@ public class TestInsideBuy {
 	@Test
 	@Transactional
 	public void test_deleteByPhoneIdAndOrderGroup() {
-		String aa = "{\"orders\":[{\"goodsModelId\":\"2\",\"goodsCount\":\"100\",\"orderGroup\":\"456789\"},"
-				+ "{\"goodsModelId\":\"3\",\"goodsCount\":\"100\",\"orderGroup\":\"456789\"}]}";
+		String aa = "{\"orders\":[{\"goodsModelId\":\"6\",\"goodsCount\":\"100\",\"orderGroup\":\"456789\"},"
+							   + "{\"goodsModelId\":\"3\",\"goodsCount\":\"100\",\"orderGroup\":\"456789\"}]}";
 		JSONObject jsonObject = JSON.parseObject(aa);
 		Object object = jsonObject.get("orders");
 

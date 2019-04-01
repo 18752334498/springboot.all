@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,8 +29,8 @@ public class Order implements Serializable {
 
     /** 主键 */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_order_gen")
-    @SequenceGenerator(name = "vwt_ins_order_gen", sequenceName = "vwt_ins_order_seq")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_order_gen")
+	@SequenceGenerator(name = "vwt_ins_order_gen", sequenceName = "vwt_ins_order_seq", allocationSize = 1)
     private Long id;
 
     /** 用户ID */
@@ -38,12 +38,12 @@ public class Order implements Serializable {
     private Long phoneId;
 
     /** 商品ID */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "goods_info_id", referencedColumnName = "")
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "goods_info_id")
     private GoodsInfo goodsInfo;
 
     /** 商品型号ID */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "goods_model_id")
     private GoodsModel goodsModel;
 
@@ -75,92 +75,128 @@ public class Order implements Serializable {
     @Column(name = "order_group")
     private String orderGroup;
 
-    public Long getId() {
-        return id;
-    }
+	/** 员工编号 */
+	@Column(name = "employee_num")
+	private String employeeNum;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	/** 部门 */
+	@Column(name = "department")
+	private String department;
 
-    public Long getPhoneId() {
-        return phoneId;
-    }
+	/** 订单编号 */
+	@Column(name = "order_num")
+	private String orderNum;
 
-    public void setPhoneId(Long phoneId) {
-        this.phoneId = phoneId;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public GoodsInfo getGoodsInfo() {
-        return goodsInfo;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setGoodsInfo(GoodsInfo goodsInfo) {
-        this.goodsInfo = goodsInfo;
-    }
+	public Long getPhoneId() {
+		return phoneId;
+	}
 
-    public GoodsModel getGoodsModel() {
-        return goodsModel;
-    }
+	public void setPhoneId(Long phoneId) {
+		this.phoneId = phoneId;
+	}
 
-    public void setGoodsModel(GoodsModel goodsModel) {
-        this.goodsModel = goodsModel;
-    }
+	public GoodsInfo getGoodsInfo() {
+		return goodsInfo;
+	}
 
-    public Integer getGoodsCount() {
-        return goodsCount;
-    }
+	public void setGoodsInfo(GoodsInfo goodsInfo) {
+		this.goodsInfo = goodsInfo;
+	}
 
-    public void setGoodsCount(Integer goodsCount) {
-        this.goodsCount = goodsCount;
-    }
+	public GoodsModel getGoodsModel() {
+		return goodsModel;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setGoodsModel(GoodsModel goodsModel) {
+		this.goodsModel = goodsModel;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public Integer getGoodsCount() {
+		return goodsCount;
+	}
 
-    public Long getPhoneNum() {
-        return phoneNum;
-    }
+	public void setGoodsCount(Integer goodsCount) {
+		this.goodsCount = goodsCount;
+	}
 
-    public void setPhoneNum(Long phoneNum) {
-        this.phoneNum = phoneNum;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getBusinessHall() {
-        return businessHall;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setBusinessHall(String businessHall) {
-        this.businessHall = businessHall;
-    }
+	public Long getPhoneNum() {
+		return phoneNum;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setPhoneNum(Long phoneNum) {
+		this.phoneNum = phoneNum;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public String getBusinessHall() {
+		return businessHall;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setBusinessHall(String businessHall) {
+		this.businessHall = businessHall;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public String getOrderGroup() {
-        return orderGroup;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public void setOrderGroup(String orderGroup) {
-        this.orderGroup = orderGroup;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getOrderGroup() {
+		return orderGroup;
+	}
+
+	public void setOrderGroup(String orderGroup) {
+		this.orderGroup = orderGroup;
+	}
+
+	public String getEmployeeNum() {
+		return employeeNum;
+	}
+
+	public void setEmployeeNum(String employeeNum) {
+		this.employeeNum = employeeNum;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
 
 }

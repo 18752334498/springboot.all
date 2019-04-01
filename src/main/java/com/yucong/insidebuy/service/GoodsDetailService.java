@@ -26,16 +26,14 @@ public class GoodsDetailService {
      */
     public List<Map<String, Object>> findGoodsDetail() {
         StringBuffer sql = new StringBuffer();
-        sql.append("select i.goods_name,i.description, i.picture, i.brand, i.id as goods_info_id, ");
-        sql.append("m.discount_price, m.market_price, m.goods_model, m.inventory, m.id as goods_model_id, ");
-        sql.append("buy.limit_count ");
+		sql.append("select i.goods_name,i.description, i.picture, i.brand, i.id as goods_info_id, i.limit_count, ");
+		sql.append("m.discount_price, m.market_price, m.goods_model, m.inventory, m.id as goods_model_id ");
         sql.append("from vwt_ins_goods_info i ");
         sql.append("join vwt_ins_goods_model m on m.goods_info_id = i.id ");
-        sql.append("left join vwt_ins_buy_limit buy on buy.goods_model_num = i.model_num ");
         sql.append("where i.status = 1 and i.model_num = :model_num");
 
         Map<String, Object> map = new HashMap<>();
-        map.put("model_num", "AABB");
+		map.put("model_num", "aaa");
 
         return QueryUtils.queryForMap(manager, sql.toString(), map);
     }

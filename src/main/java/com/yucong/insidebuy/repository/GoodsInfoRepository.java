@@ -15,4 +15,6 @@ public interface GoodsInfoRepository extends JpaRepository<GoodsInfo, Long> {
 
 	/*******************/
 
+	GoodsInfo findByModelNum(String modelNum);
+
 }

@@ -26,8 +26,8 @@ public class Activity implements Serializable{
 
     /** 主键 */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_activity_gen")
-    @SequenceGenerator(name = "vwt_ins_activity_gen", sequenceName = "vwt_ins_activity_seq")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_activity_gen")
+	@SequenceGenerator(name = "vwt_ins_activity_gen", sequenceName = "vwt_ins_activity_seq", allocationSize = 1)
     private Long id;
 
     /** 活动开始时间 */

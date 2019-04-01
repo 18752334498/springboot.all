@@ -3,7 +3,6 @@ package com.yucong.insidebuy;
 import java.util.Date;
 
 import com.alibaba.fastjson.JSON;
-import com.yucong.insidebuy.entity.BuyLimit;
 import com.yucong.insidebuy.entity.GoodsInfo;
 import com.yucong.insidebuy.entity.GoodsType;
 
@@ -15,13 +14,11 @@ public class UtilForInside {
 
 	public static GoodsInfo getGoodsInfo() {
 		GoodsInfo g = new GoodsInfo();
-		BuyLimit buyLimit = new BuyLimit();
 		GoodsType goodsType = new GoodsType();
-		buyLimit.setGoodsModelNum("gghhjjkk");
 		goodsType.setId(1l);
 
 		// 必填
-		g.setBuyLimit(buyLimit);
+		g.setModelNum("vvvv");
 		g.setGoodsType(goodsType);
 		g.setDescription("bigger than bigger");
 		g.setGoodsName("honor10");
