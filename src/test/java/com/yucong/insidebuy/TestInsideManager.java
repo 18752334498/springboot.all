@@ -25,7 +25,6 @@ import com.yucong.insidebuy.entity.Activity;
 import com.yucong.insidebuy.entity.GoodsInfo;
 import com.yucong.insidebuy.entity.GoodsModel;
 import com.yucong.insidebuy.entity.GoodsType;
-import com.yucong.insidebuy.entity.Order;
 import com.yucong.insidebuy.repository.ActivityRepository;
 import com.yucong.insidebuy.repository.GoodsInfoRepository;
 import com.yucong.insidebuy.repository.GoodsModelRepository;
@@ -174,40 +173,41 @@ public class TestInsideManager {
 
 	@Test
 	public void test_getOrderList() {
-//		JSONObject jsonObject = orderService.findOrderListForManager();
+		JSONObject jsonObject = orderService.findOrderListForManager();
+		System.out.println(jsonObject.toString());
 
-		Page<Order> page = orderRepository.findAll(PageRequest.of(0, 2));
-
-		List<Order> list = page.getContent();
-		for (Order order : list) {
-			Long goods_model_id = order.getGoodsModel().getId();
-
-			// 临时队列
-			List<GoodsModel> temGoodsModelList = new ArrayList<>();
-			GoodsInfo temGoodsInfo = new GoodsInfo();
-			GoodsModel temGoodsModel = new GoodsModel();
-
-			List<GoodsModel> goodsModels = order.getGoodsInfo().getGoodsModels();
-			for (GoodsModel m : goodsModels) {
-				if (m.getId().equals(goods_model_id)) {
-					temGoodsModel.setDiscountPrice(m.getDiscountPrice());
-					temGoodsModel.setGoodsModel(m.getGoodsModel());
-
-					temGoodsModelList.add(temGoodsModel);
-
-					temGoodsInfo.setGoodsName(order.getGoodsInfo().getGoodsName());
-					temGoodsInfo.setGoodsModels(temGoodsModelList);
-					break;
-				}
-			}
-			order.setGoodsInfo(temGoodsInfo);
-			order.setGoodsModel(null);
-		}
-
-		JSONObject result = new JSONObject();
-		result.put("data", list);
-		result.put("nums", page.getTotalPages());
-		System.out.println(JSON.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect));
+//		Page<Order> page = orderRepository.findAll(PageRequest.of(0, 2));
+//
+//		List<Order> list = page.getContent();
+//		for (Order order : list) {
+//			Long goods_model_id = order.getGoodsModel().getId();
+//
+//			// 临时队列
+//			List<GoodsModel> temGoodsModelList = new ArrayList<>();
+//			GoodsInfo temGoodsInfo = new GoodsInfo();
+//			GoodsModel temGoodsModel = new GoodsModel();
+//
+//			List<GoodsModel> goodsModels = order.getGoodsInfo().getGoodsModels();
+//			for (GoodsModel m : goodsModels) {
+//				if (m.getId().equals(goods_model_id)) {
+//					temGoodsModel.setDiscountPrice(m.getDiscountPrice());
+//					temGoodsModel.setGoodsModel(m.getGoodsModel());
+//
+//					temGoodsModelList.add(temGoodsModel);
+//
+//					temGoodsInfo.setGoodsName(order.getGoodsInfo().getGoodsName());
+//					temGoodsInfo.setGoodsModels(temGoodsModelList);
+//					break;
+//				}
+//			}
+//			order.setGoodsInfo(temGoodsInfo);
+//			order.setGoodsModel(null);
+//		}
+//
+//		JSONObject result = new JSONObject();
+//		result.put("data", list);
+//		result.put("nums", page.getTotalPages());
+//		System.out.println(JSON.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect));
 
 	}
 
