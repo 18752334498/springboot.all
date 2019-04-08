@@ -21,9 +21,9 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
     @Query("delete from ShoppingCart cart where cart.id = :cartId")
     int deleteByCartId(@Param("cartId") Long cartId);
 
-	@Query("select c from ShoppingCart c where c.phoneId=:phoneId and c.goodsInfo.id=:goodsInfoId and c.goodsModel.id=:goodsModelId")
-	public ShoppingCart findByPhoneInfoModelId(@Param("phoneId") Long phoneId, @Param("goodsInfoId") Long goodsInfoId,
-			@Param("goodsModelId") Long goodsModelId);
+    @Query("select c from ShoppingCart c where c.phoneId=:phoneId and c.goodsInfo.id=:goodsInfoId and c.goodsModel.id=:goodsModelId")
+    public ShoppingCart findByPhoneInfoModelId(@Param("phoneId") Long phoneId, @Param("goodsInfoId") Long goodsInfoId,
+            @Param("goodsModelId") Long goodsModelId);
 
 
 }

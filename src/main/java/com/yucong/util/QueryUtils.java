@@ -1,6 +1,3 @@
-/*
- * Copyright 2004-2017 涓婃捣鑻ラ泤杞欢绯荤粺鏈夐檺鍏徃
- */
 
 package com.yucong.util;
 
@@ -44,6 +41,7 @@ public final class QueryUtils {
         if (pageable == null) {
             return new PageImpl<>(queryForList(em, sql, paramMap));
         }
+
         StringBuffer countSql = new StringBuffer("select count(*) from (");
         countSql.append(sql).append(") ca");
         Long total = Long.valueOf(getSingleResult(em, countSql.toString(), paramMap).toString());

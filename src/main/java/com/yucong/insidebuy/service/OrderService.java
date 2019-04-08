@@ -67,14 +67,12 @@ public class OrderService {
     public JSONObject findOrderListForManager() {
 
         StringBuffer sql = new StringBuffer();
-
         sql.append("select o.id, o.address, o.business_hall, o.department,o.employee_num, ");
         sql.append("o.goods_count,o.order_num,o.phone_num,o.username,o.create_time, ");
         sql.append("i.goods_name,m.discount_price,m.goods_model ");
         sql.append("from vwt_ins_order o ");
         sql.append("join vwt_ins_goods_info i on i.id = o.goods_info_id ");
         sql.append("join vwt_ins_goods_model m on m.id = o.goods_model_id");
-
         Page<Map<String, Object>> page = QueryUtils.queryForMap(manager, sql.toString(), new HashMap<>(), PageRequest.of(0, 2));
 
         JSONObject result = new JSONObject();

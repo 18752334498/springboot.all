@@ -15,16 +15,18 @@ import com.yucong.insidebuy.entity.Order;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
 
-	@Modifying
+    @Modifying
     @Transactional
-	@Query(nativeQuery = true, value = "delete from vwt_ins_order where order_group = :orderGroup")
-	int deleteByOrderGroup(@Param("orderGroup") String orderGroup);
+    @Query(nativeQuery = true, value = "delete from vwt_ins_order where order_group = :orderGroup")
+    int deleteByOrderGroup(@Param("orderGroup") String orderGroup);
 
-	@Query("select count(o) from Order o where o.goodsInfo.id = :goodsInfoId")
-	public int findAllByGoodsInfoId(@Param("goodsInfoId") Long goodsInfoId);
+    @Query("select count(o) from Order o where o.goodsInfo.id = :goodsInfoId")
+    public int findAllByGoodsInfoId(@Param("goodsInfoId") Long goodsInfoId);
 
-	@Query("select o.id,o.username,o.goodsCount,o.phoneNum,o.businessHall,o.address,o.createTime,o.employeeNum,"
-			+ "o.department,o.orderNum,o.goodsInfo.goodsName,o.goodsModel.discountPrice,o.goodsModel.goodsModel from Order o")
-	Page<Map<String, Object>> findddd(Pageable pageable);
+    @Query("select o.id,o.username,o.goodsCount,o.phoneNum,o.businessHall,o.address,o.createTime,o.employeeNum," + "o.department,o.orderNum,"
+            + "o.goodsInfo.goodsName," + "o.goodsModel.discountPrice," + "o.goodsModel.goodsModel " + "from Order o")
+    Page<Map<String, Object>> findByCondition(Pageable pageable);
+
+
 
 }
