@@ -1,5 +1,9 @@
 package com.yucong.insidebuy;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +64,19 @@ public class TestInsideBuyMethod {
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test_main() {
+        Properties properties = System.getProperties();
+        for (String key : properties.stringPropertyNames()) {
+            System.err.println(key + "=" + properties.getProperty(key));
+        }
+
+        Map<String, String> getenv = System.getenv();
+        for (Entry<String, String> i : getenv.entrySet()) {
+            System.err.println(i.getKey().toLowerCase() + ":" + i.getValue());
         }
     }
 

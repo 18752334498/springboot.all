@@ -603,4 +603,14 @@ public class TestInsideBuy {
     public void queryAllLimitCount() {
         orderService.queryAllLimitCount(1l, 1l);
     }
+
+    @Test
+    @Transactional
+    public void test_deleteShoppingCartByIds() {
+        List<Long> ids = new ArrayList<>();
+        ids.add(1l);
+        ids.add(3l);
+        int count = shoppingCartRepository.deleteShoppingCartByIds(ids);
+        System.out.println("删除了：" + count);
+    }
 }

@@ -20,14 +20,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vwt_ins_activity")
-public class Activity implements Serializable{
+public class Activity implements Serializable {
 
     private static final long serialVersionUID = 1670198930894079950L;
 
     /** 主键 */
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_activity_gen")
-	@SequenceGenerator(name = "vwt_ins_activity_gen", sequenceName = "vwt_ins_activity_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "vwt_ins_activity_gen")
+    @SequenceGenerator(name = "vwt_ins_activity_gen", sequenceName = "vwt_ins_activity_seq", allocationSize = 1)
     private Long id;
 
     /** 活动开始时间 */

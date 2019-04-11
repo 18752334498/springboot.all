@@ -3,6 +3,7 @@ package com.yucong.insidebuy;
 import java.util.Date;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yucong.insidebuy.entity.GoodsInfo;
 import com.yucong.insidebuy.entity.GoodsType;
 
@@ -34,7 +35,7 @@ public class UtilForInside {
         // 自定义
         g.setUpdateTime(new Date());
 
-        System.out.println(JSON.toJSONString(g));
+        System.out.println(JSON.toJSONString(g, SerializerFeature.PrettyFormat));
 
         return g;
     }

@@ -24,14 +24,14 @@ public class GoodsModel implements Serializable {
 
     /** 主键 */
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_model_gen")
-	@SequenceGenerator(name = "vwt_ins_goods_model_gen", sequenceName = "vwt_ins_goods_model_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "vwt_ins_goods_model_gen")
+    @SequenceGenerator(name = "vwt_ins_goods_model_gen", sequenceName = "vwt_ins_goods_model_seq", allocationSize = 1)
     private Long id;
 
 
     /** 商品信息ID */
-	@Column(name = "goods_info_id")
-	private Long goodsInfoId;
+    @Column(name = "goods_info_id")
+    private Long goodsInfoId;
 
     /** 商品型号 */
     @Column(name = "goods_model", length = 20)
@@ -49,52 +49,52 @@ public class GoodsModel implements Serializable {
     @Column(name = "inventory")
     private Integer inventory;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getGoodsInfoId() {
-		return goodsInfoId;
-	}
+    public Long getGoodsInfoId() {
+        return goodsInfoId;
+    }
 
-	public void setGoodsInfoId(Long goodsInfoId) {
-		this.goodsInfoId = goodsInfoId;
-	}
+    public void setGoodsInfoId(Long goodsInfoId) {
+        this.goodsInfoId = goodsInfoId;
+    }
 
-	public String getGoodsModel() {
-		return goodsModel;
-	}
+    public String getGoodsModel() {
+        return goodsModel;
+    }
 
-	public void setGoodsModel(String goodsModel) {
-		this.goodsModel = goodsModel;
-	}
+    public void setGoodsModel(String goodsModel) {
+        this.goodsModel = goodsModel;
+    }
 
-	public Double getMarketPrice() {
-		return marketPrice;
-	}
+    public Double getMarketPrice() {
+        return marketPrice;
+    }
 
-	public void setMarketPrice(Double marketPrice) {
-		this.marketPrice = marketPrice;
-	}
+    public void setMarketPrice(Double marketPrice) {
+        this.marketPrice = marketPrice;
+    }
 
-	public Double getDiscountPrice() {
-		return discountPrice;
-	}
+    public Double getDiscountPrice() {
+        return discountPrice;
+    }
 
-	public void setDiscountPrice(Double discountPrice) {
-		this.discountPrice = discountPrice;
-	}
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
 
-	public Integer getInventory() {
-		return inventory;
-	}
+    public Integer getInventory() {
+        return inventory;
+    }
 
-	public void setInventory(Integer inventory) {
-		this.inventory = inventory;
-	}
+    public void setInventory(Integer inventory) {
+        this.inventory = inventory;
+    }
 
 }

@@ -27,6 +27,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             + "o.goodsInfo.goodsName," + "o.goodsModel.discountPrice," + "o.goodsModel.goodsModel " + "from Order o")
     Page<Map<String, Object>> findByCondition(Pageable pageable);
 
-
-
 }

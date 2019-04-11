@@ -29,8 +29,8 @@ public class Order implements Serializable {
 
     /** 主键 */
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_order_gen")
-	@SequenceGenerator(name = "vwt_ins_order_gen", sequenceName = "vwt_ins_order_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "vwt_ins_order_gen")
+    @SequenceGenerator(name = "vwt_ins_order_gen", sequenceName = "vwt_ins_order_seq", allocationSize = 1)
     private Long id;
 
     /** 用户ID */
@@ -38,27 +38,27 @@ public class Order implements Serializable {
     private Long phoneId;
 
     /** 商品ID */
-	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinColumn(name = "goods_info_id")
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "goods_info_id")
     private GoodsInfo goodsInfo;
 
     /** 商品型号ID */
-	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "goods_model_id")
     private GoodsModel goodsModel;
 
     /** 商品数量 */
     @Column(name = "goods_count")
     private Integer goodsCount;
-    
+
     /** 用户姓名 */
     @Column(name = "username")
     private String username;
-    
+
     /** 手机号码 */
     @Column(name = "phone_num")
     private Long phoneNum;
-    
+
     /** 自提营业厅 */
     @Column(name = "business_hall")
     private String businessHall;
@@ -75,128 +75,128 @@ public class Order implements Serializable {
     @Column(name = "order_group")
     private String orderGroup;
 
-	/** 员工编号 */
-	@Column(name = "employee_num")
-	private String employeeNum;
+    /** 员工编号 */
+    @Column(name = "employee_num")
+    private String employeeNum;
 
-	/** 部门 */
-	@Column(name = "department")
-	private String department;
+    /** 部门 */
+    @Column(name = "department")
+    private String department;
 
-	/** 订单编号 */
-	@Column(name = "order_num")
-	private String orderNum;
+    /** 订单编号 */
+    @Column(name = "order_num")
+    private String orderNum;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getPhoneId() {
-		return phoneId;
-	}
+    public Long getPhoneId() {
+        return phoneId;
+    }
 
-	public void setPhoneId(Long phoneId) {
-		this.phoneId = phoneId;
-	}
+    public void setPhoneId(Long phoneId) {
+        this.phoneId = phoneId;
+    }
 
-	public GoodsInfo getGoodsInfo() {
-		return goodsInfo;
-	}
+    public GoodsInfo getGoodsInfo() {
+        return goodsInfo;
+    }
 
-	public void setGoodsInfo(GoodsInfo goodsInfo) {
-		this.goodsInfo = goodsInfo;
-	}
+    public void setGoodsInfo(GoodsInfo goodsInfo) {
+        this.goodsInfo = goodsInfo;
+    }
 
-	public GoodsModel getGoodsModel() {
-		return goodsModel;
-	}
+    public GoodsModel getGoodsModel() {
+        return goodsModel;
+    }
 
-	public void setGoodsModel(GoodsModel goodsModel) {
-		this.goodsModel = goodsModel;
-	}
+    public void setGoodsModel(GoodsModel goodsModel) {
+        this.goodsModel = goodsModel;
+    }
 
-	public Integer getGoodsCount() {
-		return goodsCount;
-	}
+    public Integer getGoodsCount() {
+        return goodsCount;
+    }
 
-	public void setGoodsCount(Integer goodsCount) {
-		this.goodsCount = goodsCount;
-	}
+    public void setGoodsCount(Integer goodsCount) {
+        this.goodsCount = goodsCount;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public Long getPhoneNum() {
-		return phoneNum;
-	}
+    public Long getPhoneNum() {
+        return phoneNum;
+    }
 
-	public void setPhoneNum(Long phoneNum) {
-		this.phoneNum = phoneNum;
-	}
+    public void setPhoneNum(Long phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
-	public String getBusinessHall() {
-		return businessHall;
-	}
+    public String getBusinessHall() {
+        return businessHall;
+    }
 
-	public void setBusinessHall(String businessHall) {
-		this.businessHall = businessHall;
-	}
+    public void setBusinessHall(String businessHall) {
+        this.businessHall = businessHall;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public String getOrderGroup() {
-		return orderGroup;
-	}
+    public String getOrderGroup() {
+        return orderGroup;
+    }
 
-	public void setOrderGroup(String orderGroup) {
-		this.orderGroup = orderGroup;
-	}
+    public void setOrderGroup(String orderGroup) {
+        this.orderGroup = orderGroup;
+    }
 
-	public String getEmployeeNum() {
-		return employeeNum;
-	}
+    public String getEmployeeNum() {
+        return employeeNum;
+    }
 
-	public void setEmployeeNum(String employeeNum) {
-		this.employeeNum = employeeNum;
-	}
+    public void setEmployeeNum(String employeeNum) {
+        this.employeeNum = employeeNum;
+    }
 
-	public String getDepartment() {
-		return department;
-	}
+    public String getDepartment() {
+        return department;
+    }
 
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
-	public String getOrderNum() {
-		return orderNum;
-	}
+    public String getOrderNum() {
+        return orderNum;
+    }
 
-	public void setOrderNum(String orderNum) {
-		this.orderNum = orderNum;
-	}
+    public void setOrderNum(String orderNum) {
+        this.orderNum = orderNum;
+    }
 
 }

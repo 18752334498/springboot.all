@@ -1,5 +1,7 @@
 package com.yucong.insidebuy.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +27,7 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
     public ShoppingCart findByPhoneInfoModelId(@Param("phoneId") Long phoneId, @Param("goodsInfoId") Long goodsInfoId,
             @Param("goodsModelId") Long goodsModelId);
 
-
+    @Modifying
+    @Query("delete from ShoppingCart cart where cart.id in (:ids)")
+    public int deleteShoppingCartByIds(@Param("ids") List<Long> ids);
 }

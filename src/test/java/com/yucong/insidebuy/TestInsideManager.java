@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yucong.App;
@@ -29,12 +31,9 @@ import com.yucong.insidebuy.repository.ActivityRepository;
 import com.yucong.insidebuy.repository.GoodsInfoRepository;
 import com.yucong.insidebuy.repository.GoodsModelRepository;
 import com.yucong.insidebuy.repository.OrderRepository;
-import com.yucong.insidebuy.repository.ShoppingCartRepository;
 import com.yucong.insidebuy.repository.TypeRepository;
-import com.yucong.insidebuy.service.GoodsDetailService;
 import com.yucong.insidebuy.service.GoodsInfoService;
 import com.yucong.insidebuy.service.OrderService;
-import com.yucong.insidebuy.service.ShoppingCartService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
@@ -48,12 +47,6 @@ public class TestInsideManager {
     private GoodsInfoService goodsInfoService;
     @Autowired
     private ActivityRepository activityRepository;
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
-    @Autowired
-    private ShoppingCartService shoppingCartService;
-    @Autowired
-    private GoodsDetailService goodsDetailService;
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -174,52 +167,6 @@ public class TestInsideManager {
         // 方法一
         JSONObject jsonObject = orderService.findOrderListForManager();
         System.out.println(JSON.toJSONString(jsonObject, SerializerFeature.PrettyFormat));
-
-        // 方法二
-        // Page<Map<String, Object>> page = orderRepository.findByCondition(PageRequest.of(0, 2));
-        // System.out.println(JSON.toJSONString(page.getContent(), SerializerFeature.PrettyFormat));
-        //
-        //
-        // Page<Order> findAll = orderRepository.findAll(PageRequest.of(0, 2));
-        // System.out.println(JSON.toJSONString(findAll.getContent(),
-        // SerializerFeature.PrettyFormat));
-
-
-        // 方法三
-        // Page<Order> page = orderRepository.findAll(PageRequest.of(0, 2));
-        //
-        // List<Order> list = page.getContent();
-        // for (Order order : list) {
-        // Long goods_model_id = order.getGoodsModel().getId();
-        //
-        // // 临时队列
-        // List<GoodsModel> temGoodsModelList = new ArrayList<>();
-        // GoodsInfo temGoodsInfo = new GoodsInfo();
-        // GoodsModel temGoodsModel = new GoodsModel();
-        //
-        // List<GoodsModel> goodsModels = order.getGoodsInfo().getGoodsModels();
-        // for (GoodsModel m : goodsModels) {
-        // if (m.getId().equals(goods_model_id)) {
-        // temGoodsModel.setDiscountPrice(m.getDiscountPrice());
-        // temGoodsModel.setGoodsModel(m.getGoodsModel());
-        //
-        // temGoodsModelList.add(temGoodsModel);
-        //
-        // temGoodsInfo.setGoodsName(order.getGoodsInfo().getGoodsName());
-        // temGoodsInfo.setGoodsModels(temGoodsModelList);
-        // break;
-        // }
-        // }
-        // order.setGoodsInfo(temGoodsInfo);
-        // order.setGoodsModel(null);
-        // }
-        //
-        // JSONObject result = new JSONObject();
-        // result.put("data", list);
-        // result.put("nums", page.getTotalPages());
-        // System.out.println(JSON.toJSONString(result,
-        // SerializerFeature.DisableCircularReferenceDetect));
-
     }
 
     @Test
@@ -280,6 +227,46 @@ public class TestInsideManager {
 
         // 新增操作不设置ID，更新操作默认有ID
         return a;
+    }
+
+    @Test
+    public void test_newGoodsInfoSaveForManager() {
+        String aa =
+                "{\"goodsInfo\":{\"id\":\"111\",\"brand\":\"honor\",\"description\":\"bigger than bigger\",\"goodsName\":\"honor10\",\"goodsNum\":1,\"goodsType\":{\"id\":1},\"modelNum\":\"vvvv\",\"picture\":\"/aa/ss/magic.png\",\"status\":1},\"goodsModels\":[{\"discountPrice\":2000.0,\"goodsInfoId\":1,\"goodsModel\":\"2\",\"id\":1,\"inventory\":12,\"marketPrice\":3000.0},{\"discountPrice\":1000.0,\"goodsInfoId\":1,\"goodsModel\":\"3\",\"id\":2,\"inventory\":34,\"marketPrice\":2000.0}]}";
+        JSONObject jsonObject = JSONObject.parseObject(aa);
+        GoodsInfo goodsInfo = JSONObject.parseObject(jsonObject.getString("goodsInfo"), GoodsInfo.class);
+        System.out.println(JSON.toJSONString(goodsInfo, SerializerFeature.PrettyFormat));
+
+        List<GoodsModel> list = JSONArray.parseArray(jsonObject.getString("goodsModels"), GoodsModel.class);
+        System.out.println(JSON.toJSONString(list, SerializerFeature.PrettyFormat));
+    }
+
+    @Test
+    public void test_parse() {
+        String aa =
+                "{\"brand\":\"huawei\",\"description\":\"hehe\",\"goodsName\":\"mate10\",\"goodsNum\":3,\"goodsType\":{\"id\":1},\"modelNum\":\"rrrr\",\"picture\":\"/aa/ss/mate10.png\",\"status\":1,\"updateTime\":1554720842146}";
+        GoodsInfo goodsInfo = JSONObject.parseObject(aa, GoodsInfo.class);
+        GoodsInfo info = new GoodsInfo();
+        BeanUtils.copyProperties(goodsInfo, info);
+        System.out.println(JSON.toJSONString(info, SerializerFeature.PrettyFormat));
+    }
+
+    @Test
+    @Transactional
+    public void test_updateActivity() {
+        goodsInfoRepository.updateById(1l, 99, "aaa");
+    }
+
+    @Test
+    public void test_new_getOrderList() {
+        orderService.test_new_getOrderList();
+    }
+
+    @Test
+    @Transactional
+    public void test_modifyLimitCountToNull() {
+        int count = goodsInfoRepository.modifyLimitCountToNull();
+        System.out.println("修改了：" + count);
     }
 
 }

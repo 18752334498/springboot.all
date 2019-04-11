@@ -24,8 +24,8 @@ public class GoodsType implements Serializable {
 
     /** 主键 */
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "vwt_ins_goods_type_gen")
-	@SequenceGenerator(name = "vwt_ins_goods_type_gen", sequenceName = "vwt_ins_goods_type_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "vwt_ins_goods_type_gen")
+    @SequenceGenerator(name = "vwt_ins_goods_type_gen", sequenceName = "vwt_ins_goods_type_seq", allocationSize = 1)
     private Long id;
 
     /** 商品类别 */
