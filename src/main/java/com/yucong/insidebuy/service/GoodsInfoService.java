@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
-import com.royasoft.core.tools.common.dao.QueryUtils;
 import com.yucong.insidebuy.entity.GoodsInfo;
 import com.yucong.insidebuy.entity.GoodsType;
 import com.yucong.insidebuy.repository.GoodsInfoRepository;
+import com.yucong.util.QueryUtils;
 
 @Service
 public class GoodsInfoService {

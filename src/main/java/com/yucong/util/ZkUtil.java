@@ -2,15 +2,18 @@ package com.yucong.util;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.CuratorFrameworkFactory.Builder;
 import org.apache.curator.framework.recipes.cache.NodeCache;
 import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache.StartMode;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
+import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.springframework.util.StringUtils;
 
 public class ZkUtil {
 
@@ -20,7 +23,7 @@ public class ZkUtil {
 
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         Builder builder = CuratorFrameworkFactory.builder().connectString(zkUrl).sessionTimeoutMs(10000).retryPolicy(retryPolicy);
-        if (StringUtils.isNotEmpty(zkHome)) {
+		if (!StringUtils.isEmpty(zkUrl)) {
             builder = builder.namespace(zkHome);
         }
 

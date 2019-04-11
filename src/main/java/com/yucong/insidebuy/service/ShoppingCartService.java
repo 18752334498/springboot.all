@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.royasoft.core.tools.common.dao.QueryUtils;
+import com.yucong.util.QueryUtils;
 
 @Service
 public class ShoppingCartService {
