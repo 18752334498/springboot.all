@@ -44,16 +44,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.royasoft.core</groupId>
-			<artifactId>core-tools-utils</artifactId>
-			<version>v1.1.1_snapshots</version>
-		</dependency>
-		<dependency>
-			<groupId>com.royasoft.core</groupId>
-			<artifactId>core-tools-common</artifactId>
-			<version>v1.1.1_snapshots</version>
-		</dependency>
 
 		<!--MySql -->
 		<dependency>
@@ -80,15 +70,11 @@
 			<version>3.17</version>
 		</dependency>
 
+		<!-- zookeeper -->
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
 			<version>3.4.12</version>
-		</dependency>
-		<dependency>
-			<groupId>com.101tec</groupId>
-			<artifactId>zkclient</artifactId>
-			<version>0.10</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.curator</groupId>

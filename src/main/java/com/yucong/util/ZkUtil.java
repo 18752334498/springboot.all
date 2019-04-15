@@ -12,7 +12,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache.StartMode;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
-import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.curator.retry.BoundedExponentialBackoffRetry;
 import org.springframework.util.StringUtils;
 
 public class ZkUtil {
@@ -21,9 +21,9 @@ public class ZkUtil {
 
     public ZkUtil(String zkUrl, String zkHome) {
 
-        RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
+        RetryPolicy retryPolicy = new BoundedExponentialBackoffRetry(1000, 3, 3);
         Builder builder = CuratorFrameworkFactory.builder().connectString(zkUrl).sessionTimeoutMs(10000).retryPolicy(retryPolicy);
-		if (!StringUtils.isEmpty(zkUrl)) {
+        if (!StringUtils.isEmpty(zkUrl)) {
             builder = builder.namespace(zkHome);
         }
 
