@@ -1,12 +1,11 @@
 package com.yucong.vm;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
 import com.yucong.util.ZkUtil;
 
-@Configuration
+// @Configuration //避免测试报错
 public class BeanFromVM {
 
     private static final String ZKADDRESS = "com.yucong.zkAddress";
@@ -18,8 +17,8 @@ public class BeanFromVM {
 
     @Bean
     public ZkUtil zkUtil(String zkAddress) {
-		System.out.println("ZK客服端初始化: " + zkAddress);
-		ZkUtil zkUtil = new ZkUtil(zkAddress, "");
+        System.out.println("ZK客服端初始化: " + zkAddress);
+        ZkUtil zkUtil = new ZkUtil(zkAddress, "");
         return zkUtil;
     }
 
