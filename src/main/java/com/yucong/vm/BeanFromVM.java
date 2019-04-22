@@ -1,11 +1,12 @@
 package com.yucong.vm;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
 import com.yucong.util.ZkUtil;
 
-// @Configuration //避免测试报错
+@Configuration // 避免测试报错
 public class BeanFromVM {
 
     private static final String ZKADDRESS = "com.yucong.zkAddress";
