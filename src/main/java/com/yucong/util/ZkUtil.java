@@ -21,7 +21,7 @@ public class ZkUtil {
 
     public ZkUtil(String zkUrl, String zkHome) {
 
-        RetryPolicy retryPolicy = new BoundedExponentialBackoffRetry(1000, 3, 3);
+        RetryPolicy retryPolicy = new BoundedExponentialBackoffRetry(2000, 3, 3);
         Builder builder = CuratorFrameworkFactory.builder().connectString(zkUrl).sessionTimeoutMs(10000).retryPolicy(retryPolicy);
         if (!StringUtils.isEmpty(zkUrl)) {
             builder = builder.namespace(zkHome);
