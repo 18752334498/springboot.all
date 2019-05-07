@@ -20,6 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yucong.App;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
 public class TestJpa {
@@ -60,6 +63,10 @@ public class TestJpa {
 //		List<User> list = repo.findByFuzzyName("Tom");
 		List<User> list = repo.findByFuzzyName("-2");
 		System.out.println(list);
+        log.debug("debug");
+        log.info("info");
+        log.warn("warn");
+        log.error("error");
 	}
 
 	@Test
