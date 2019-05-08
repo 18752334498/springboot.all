@@ -52,6 +52,14 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<!-- MyBatis-Plus 3.0 版本基于 JDK8，提供了 lambda 形式的调用，
+			引入 MyBatis-Plus 之后请不要再次引入 MyBatis 以及 MyBatis-Spring，以避免因版本差异导致的问题 -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
 		<!-- fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

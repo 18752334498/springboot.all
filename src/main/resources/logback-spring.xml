@@ -43,7 +43,7 @@
 		 	level:用来设置打印级别，大小写无关 -->
 	<logger name="org.springframework.web" level="info"/>
 	<logger name="org.apache.zookeeper" level="info"/>
-	<logger name="com.yucong.jpa" level="debug"/>
+	<logger name="com.yucong.mybatisplugin" level="debug"/>
 
 	<!-- root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性:用来设置打印级别，大小写无关 -->
 	<root level="info">
@@ -51,17 +51,5 @@
 		<appender-ref ref="INFO_FILE" />>
 	</root>
 	
-	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder"  level="TRACE" />
-    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor"  level="DEBUG" />
-    <logger name="org.hibernate.SQL" level="DEBUG" />
-    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
-    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
-
-    <!--myibatis log configure-->
-    <logger name="com.apache.ibatis" level="TRACE"/>
-    <logger name="java.sql.Connection" level="DEBUG"/>
-    <logger name="java.sql.Statement" level="DEBUG"/>
-    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
 </configuration>
