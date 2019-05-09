@@ -52,8 +52,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
-		<!-- MyBatis-Plus 3.0 版本基于 JDK8，提供了 lambda 形式的调用，
-			引入 MyBatis-Plus 之后请不要再次引入 MyBatis 以及 MyBatis-Spring，以避免因版本差异导致的问题 -->
+		<!-- MyBatis-Plus 3.0 版本基于 JDK8，提供了 lambda 形式的调用， 引入 MyBatis-Plus 之后请不要再次引入 
+			MyBatis 以及 MyBatis-Spring，以避免因版本差异导致的问题 -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
@@ -107,6 +107,18 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<scope>provide</scope>
+		</dependency>
+
+		<!-- Jedis JedisCluster -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<!-- redis 这个依赖和springboot版本保持一致，而且它对 redisTemplete 已经做好了配置，启动即用 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 	</dependencies>
