@@ -68,7 +68,7 @@ public class RedisConfig {
     public RedisConnectionFactory redisConnectionFactory(GenericObjectPoolConfig poolConfig) throws Exception {
         log.info("Redis 初始化中...");
         // 判断是单机还是集群
-        LettuceConnectionFactory factory = null;
+        RedisConnectionFactory factory = null;
         String address = zkUtil.findData(ZK_ADDRESS + "/address");
         String[] serverArray = address.split(",");
         if (serverArray.length > 1) {

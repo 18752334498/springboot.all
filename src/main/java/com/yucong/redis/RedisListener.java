@@ -18,7 +18,7 @@ public class RedisListener implements ApplicationListener<ApplicationReadyEvent>
         forValue.set("name", "Tom");
         Object name = forValue.get("name");
 
-        System.out.println("redis伪集群获取的值： " + name.toString());
+        System.out.println("VMWare中的 redis 伪集群获取的值： " + name.toString());
     }
 
 }
