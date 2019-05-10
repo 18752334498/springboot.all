@@ -27,9 +27,9 @@ public class DruidDBConfig {
 
     @Bean
     public DruidDataSource dataSourceProperties(DruidProperty druidProperty) throws Exception {
+		log.info("DruidDataSource start init！！！");
         DruidDataSource datasource = new DruidDataSource();
 
-        log.info("开始配置DruidDataSource");
         datasource.setUrl(druidProperty.getUrl());
         datasource.setUsername(druidProperty.getUsername());
         datasource.setPassword(druidProperty.getPassword());
@@ -43,7 +43,7 @@ public class DruidDBConfig {
         datasource.setTestWhileIdle(druidProperty.isTestWhileIdle());
         datasource.setFilters(druidProperty.getFilters());
         datasource.setConnectionProperties(druidProperty.getConnectionProperties());
-        log.info("配置DruidDataSource完毕！！！");
+		log.info("DruidDataSource end init！！！");
         return datasource;
     }
 
