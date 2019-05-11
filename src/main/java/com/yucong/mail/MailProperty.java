@@ -18,7 +18,7 @@ public class MailProperty {
 
 	private final ZkUtil zkUtil;
 	private final String ZK = "/mail";
-	private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+    private final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
 	private String host;
 	private Integer port;
@@ -82,7 +82,7 @@ public class MailProperty {
 			log.info("mail连接属性，password={}", this.password.substring(0, 2) + "******");
 			log.info("mail连接属性，properties={}", this.properties);
 
-			log.info("MailProperty end init！！！");
+            log.info("MailProperty success init！！！");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -17,6 +17,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MailConfig {
 
+    /**
+     * <li>写法参照org.springframework.boot.autoconfigure.mail.MailSenderPropertiesConfiguration</li>
+     * <li>spring-boot-autoconfigure下的mail包中，有5个java类</li>
+     * <li>在application.properties中8个mail属性，只有2个类用到了这8个属性</li>
+     * <li>MailProperties 读取8个属性并注册</li>
+     * <li>MailSenderPropertiesConfiguration 读取 MailProperties，并注册 JavaMailSenderImpl</li>
+     * <li>自定义 MailProperty，类似于 MailProperties</li>
+     * <li>自定义 MailConfig，类似于 MailSenderPropertiesConfiguration</li>
+     * <li>最终完成 JavaMailSenderImpl 的注册</li>
+     * 
+     * <li>druid连接池的配置和这个原理相同</li>
+     */
+
 	@Autowired
 	private ZkUtil zkUtil;
 
@@ -27,9 +40,6 @@ public class MailConfig {
 		return new MailProperty(zkUtil);
 	}
 
-	/**
-	 * <li>写法参照org.springframework.boot.autoconfigure.mail.MailSenderPropertiesConfiguration</li>
-	 */
 	@Bean
 	public JavaMailSenderImpl mailSender(MailProperty mailProperty) {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();

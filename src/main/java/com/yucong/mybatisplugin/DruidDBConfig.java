@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.yucong.mail.MailConfig;
 import com.yucong.util.ZkUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration // 注释此注解，则取消Druid连接池，采用默认连接池（Spring-Boot-2.0.0-M1版本将默认的数据库连接池从tomcat改为了hikari）
 public class DruidDBConfig {
+
+    /**
+     * <li>自定义druid连接池的原理，请参考 {@link MailConfig}</li>
+     * 
+     * <li>自定义druid连接池的写法，请参考 DataSourceConfiguration</li>
+     * <li>DataSourceConfiguration中的方法createDataSource()，查看源码可知，只配置了driverClassName，url，username，password</li>
+     */
 
     @Autowired
     private ZkUtil zkUtil;
@@ -43,7 +51,7 @@ public class DruidDBConfig {
         datasource.setTestWhileIdle(druidProperty.isTestWhileIdle());
         datasource.setFilters(druidProperty.getFilters());
         datasource.setConnectionProperties(druidProperty.getConnectionProperties());
-		log.info("DruidDataSource end init！！！");
+        log.info("DruidDataSource success init！！！");
         return datasource;
     }
 
