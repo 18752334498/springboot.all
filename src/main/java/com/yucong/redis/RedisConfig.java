@@ -38,7 +38,7 @@ public class RedisConfig {
     private ZkUtil zkUtil;
 
     /**
-     * 配置
+     * 配置( JedisPoolConfig , PoolConfig ) extends GenericObjectPoolConfig
      */
     @Bean
     public GenericObjectPoolConfig genericObjectPoolConfig() throws Exception {

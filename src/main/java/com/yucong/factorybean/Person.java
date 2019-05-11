@@ -2,7 +2,7 @@ package com.yucong.factorybean;
 
 import java.io.Serializable;
 
-public class Person implements Serializable {
+class Person implements Serializable {
 
     private static final long serialVersionUID = 6392471977113590745L;
 

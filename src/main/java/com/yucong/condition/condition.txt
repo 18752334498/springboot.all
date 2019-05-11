@@ -1,0 +1,59 @@
+@ConditionalOnProperty()
+
+组合：prefix = "spring.test", name = "name"
+	从application.properties文件，获取spring.test.name的属性（不在乎什么值），如果有值继续执行程序，否则终止该配置
+
+组合：name = "spring.test.name"
+	从application.properties文件，获取spring.test.name的属性（不在乎什么值），如果有值继续执行程序，否则终止该配置
+
+组合：name = "spring.test.name", havingValue = "tom"
+	从application.properties文件，获取spring.test.name的属性，如果值为"tom"，继续执行程序，否则终止该配置
+
+组合：name = "spring.test.name", havingValue = "tom", matchIfMissing = true（matchIfMissing default false）
+	从application.properties文件，获取到了spring.test.name的属性，如果值为"tom"，继续执行程序，否则终止该配置
+	从application.properties文件，获取到了spring.test.name的属性，如果值不为"tom"，终止该配置
+	从application.properties文件，获取不到spring.test.name的属性，不在乎什么值havingValue什么值，此时matchIfMissing=true，继续执行程序
+	
+
+========================================================================================================================
+@AutoConfigureAfter 和 @AutoConfigureBefore 注解解析只作用于META-INF\spring.factories文件中EnableAutoConfiguration的class类集合
+
+在META-INF\spring.factories文件配置完成后，在对应的类名上不加@Configuration也可以作为配置类生效
+
+@AutoConfigureAfter(A.class)
+public class C{
+	//在META-INF\spring.factories文件中必须有A.class，C.class不需要
+}
+
+@AutoConfigureBefore(B.class)
+public class D{
+	//在META-INF\spring.factories文件中必须有B.class，D.class不需要
+}
+
+========================================================================================================================
+A,B,C 三个类在配置类里面用@bean注入
+如果三者之间没有相互依赖，按顺序注入
+如果三者之间有相互依赖，会自动分配顺序，保证成功注册
+========================================================================================================================
+在同一个配置类里面配置同名bean，从上到下加载，不会注册第二次，只注册第一个
+@Configuration
+public class UserConfig {
+    @Bean("user")
+    public User getUser2() {
+        System.out.println("user2 start init...");
+        return new User("22", "user2", "22");
+    }
+
+	//不会注册
+    @Bean("user")
+    public User getUser1() {
+        System.out.println("user1 start init...");
+        return new User("11", "user1", "11");
+    }
+}
+
+配置类@Bean注册一个，@Component也注册一个
+如果两个同名，只注册@Bean
+如果两个不同名，都会注册，但是在@Autowired的时候必须指定名称是哪一个
+
+========================================================================================================================

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyPerson implements FactoryBean<Person> {
+class MyPerson implements FactoryBean<Person> {
 
     @Override
     public Person getObject() throws Exception {

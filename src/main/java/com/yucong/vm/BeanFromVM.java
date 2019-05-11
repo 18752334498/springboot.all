@@ -18,7 +18,7 @@ public class BeanFromVM {
 
     @Bean
     public ZkUtil zkUtil(String zkAddress) {
-        System.out.println("ZK客服端初始化: " + zkAddress);
+        System.out.println("从vm获取zk信息，开始连接zk: " + zkAddress);
         ZkUtil zkUtil = new ZkUtil(zkAddress, "");
         return zkUtil;
     }

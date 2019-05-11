@@ -11,10 +11,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import com.yucong.util.ZkUtil;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Configuration
-@Slf4j
 public class MailConfig {
 
     /**
@@ -36,7 +33,6 @@ public class MailConfig {
 	@Bean(initMethod = "init")
 	@ConditionalOnMissingBean({ JavaMailSenderImpl.class })
 	public MailProperty mailProperty() {
-		log.info("开始配置自定义MailProperty");
 		return new MailProperty(zkUtil);
 	}
 

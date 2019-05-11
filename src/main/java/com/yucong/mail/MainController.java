@@ -22,7 +22,7 @@ public class MainController {
         message.setSubject("主题:邮件"); // 主题
         message.setText("what the fuck"); // 邮件内容
 
-        // 发送邮件
+        // 发送邮件，可做异步处理
         javaMailSender.send(message);
     }
 
