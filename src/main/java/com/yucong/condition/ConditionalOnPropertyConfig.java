@@ -15,7 +15,7 @@ public class ConditionalOnPropertyConfig {
 	@Bean
 	@ConditionalOnMissingBean({ User.class })
     public User threeUser() {
-		System.out.println("================jack=================");
+        System.out.println("================张三=================");
         return new User("33", "张三", "333");
 	}
 

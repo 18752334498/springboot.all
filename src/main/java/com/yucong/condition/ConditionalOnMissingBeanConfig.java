@@ -13,14 +13,14 @@ public class ConditionalOnMissingBeanConfig {
 	@Bean
 	@ConditionalOnMissingBean({ User.class })
     public User fourUser() {
-		System.out.println("================Ann=================");
+        System.out.println("================李四=================");
         return new User("44", "李四", "444");
 	}
 
     @Bean
     @ConditionalOnBean({User.class})
     public User fiveUser() {
-        System.out.println("================Ann=================");
+        System.out.println("================王五=================");
         return new User("55", "王五", "555");
     }
 

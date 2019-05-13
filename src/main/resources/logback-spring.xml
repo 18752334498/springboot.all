@@ -43,6 +43,7 @@
 		 	level:用来设置打印级别，大小写无关 -->
 	<logger name="org.springframework.web" level="info"/>
 	<logger name="com.yucong.mybatisplugin" level="debug"/>
+	<logger name="org.apache.zookeeper" level="warn"/>
 
 	<!-- root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性:用来设置打印级别，大小写无关 -->
 	<root level="info">
