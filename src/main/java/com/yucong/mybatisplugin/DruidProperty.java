@@ -101,7 +101,10 @@ public class DruidProperty {
             log.info("Druid连接属性，connectionProperties={}", this.connectionProperties);
             log.info("获取Druid连接属性完毕！！！");
         } catch (Exception e) {
-            e.printStackTrace();
+            log.info("获取Druid连接属性失败，e：{}", e);
+            // system.exit(0):正常退出，程序正常执行结束退出
+            // system.exit(1):是非正常退出，就是说无论程序正在执行与否，都退出
+            System.exit(1);
         }
     }
 

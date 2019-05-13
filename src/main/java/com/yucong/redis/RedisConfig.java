@@ -7,7 +7,6 @@ import java.util.Set;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisNode;
@@ -28,7 +27,7 @@ import com.yucong.util.ZkUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Configuration
+// @Configuration
 @Slf4j
 public class RedisConfig {
 

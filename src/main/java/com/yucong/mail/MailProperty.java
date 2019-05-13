@@ -84,7 +84,8 @@ public class MailProperty {
 
             log.info("MailProperty success init！！！");
 		} catch (Exception e) {
-			e.printStackTrace();
+            log.info("MailProperty failed init！！！，e：{}", e);
+            System.exit(1);
 		}
 	}
 
