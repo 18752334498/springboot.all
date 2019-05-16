@@ -15,7 +15,7 @@ public class AutoListener implements ApplicationListener<ApplicationReadyEvent> 
      */
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
-		ConfigurableApplicationContext context = event.getApplicationContext();
+        ConfigurableApplicationContext context = event.getApplicationContext();
         try {
             Object threeUser = context.getBean("threeUser");
             if (threeUser != null)
