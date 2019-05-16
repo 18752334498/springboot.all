@@ -1,4 +1,4 @@
-package com.yucong.curaror;
+package com.yucong.curator;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.yucong.curaror;
+package com.yucong.curator;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
