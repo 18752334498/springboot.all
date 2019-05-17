@@ -4,7 +4,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class AutoListener implements ApplicationListener<ApplicationReadyEvent> {
+public class ConditionListener implements ApplicationListener<ApplicationReadyEvent> {
 
     /**
      * 
