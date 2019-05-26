@@ -33,7 +33,9 @@ public class AsyncService {
 				result.setResult(user);
 			}
 			@Override
-			public void onFailure(Throwable t) {}
+            public void onFailure(Throwable t) {
+                result.setResult(new User(0, "failure", 0));
+            }
 
 		}, exec);
 
