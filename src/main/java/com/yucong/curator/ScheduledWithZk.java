@@ -20,7 +20,7 @@ public class ScheduledWithZk {
             public void process() {
                 System.out.println(Thread.currentThread().getName() + ":  scheduled task . . . ");
                 try {
-                    Thread.sleep(5000);
+					Thread.sleep(300000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
