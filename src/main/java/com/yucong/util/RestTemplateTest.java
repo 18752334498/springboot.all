@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class RestTemplateTet {
+public class RestTemplateTest {
 
     public static void main(String[] args) {
         post1();
