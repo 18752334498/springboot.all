@@ -3,6 +3,8 @@ package com.yucong.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
@@ -28,7 +30,7 @@ public class Node {
     public static void main(String[] args) {
         List<Node> list = new ArrayList<>();
 
-        Node node1 = new Node("1", "江苏省", "-1");
+        // Node node1 = new Node("1", "江苏省", "-1");
         Node node2 = new Node("101", "淮安市", "1");
         Node node3 = new Node("102", "南京市", "1");
         Node node4 = new Node("10101", "涟水县", "101");
@@ -37,7 +39,7 @@ public class Node {
         Node node6 = new Node("10201", "栖霞区", "102");
         Node node7 = new Node("10202", "玄武区", "102");
         Node node9 = new Node("10203", "雨花区", "102");
-        list.add(node1);
+        // list.add(node1);
         list.add(node2);
         list.add(node3);
         list.add(node4);
@@ -49,8 +51,20 @@ public class Node {
 
         TreeBulid bulid = new TreeBulid(list);
         List<Node> tree = bulid.buildListTree();
-
         System.out.println(JSON.toJSONString(tree, SerializerFeature.PrettyFormat));
+
+        List<Node> parse = parse(tree);
+        System.out.println(JSON.toJSONString(parse, SerializerFeature.PrettyFormat));
+    }
+
+    private static List<Node> parse(List<Node> tree) {
+        for (Node node : tree) {
+            node.setKey(node.getValue());
+            if (CollectionUtils.isNotEmpty(node.getChild())) {
+                parse(node.getChild());
+            }
+        }
+        return tree;
     }
 
 }

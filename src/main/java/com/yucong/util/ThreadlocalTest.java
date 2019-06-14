@@ -35,6 +35,7 @@ class Man implements Runnable{
             e.printStackTrace();
         }
         int a = new Random().nextInt(1000);
+        System.out.println(Thread.currentThread().getName() + ":" + a);
         for (int i = 0; i < a; i++) {
             if (threadLocal.get() == null) {
                 threadLocal.set(1);

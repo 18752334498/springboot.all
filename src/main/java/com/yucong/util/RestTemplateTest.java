@@ -31,6 +31,7 @@ public class RestTemplateTest {
         map.put("age", "33");
         parameters.add("_request", map);// 可以是map，可以是json对象，但是不能为string字符串
         HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(parameters, headers);
+        // httpEntity.getBody().add("", object);
 
         JSONObject object = restTemplate.postForObject("http://localhost:8080/login/validate", httpEntity, JSONObject.class);
         System.out.println(object.toJSONString());
