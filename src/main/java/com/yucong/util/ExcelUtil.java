@@ -211,10 +211,10 @@ public class ExcelUtil {
         Sheet sheet = wb.getSheetAt(0);
 
         Row first = sheet.getRow(0);
-        String id = first.getCell(0).toString();
-        String name = first.getCell(1).toString();
-        String age = first.getCell(2).toString();
-        System.out.println(id + "\t" + name + "\t" + age);
+        String name = first.getCell(0).toString();
+        String id = first.getCell(1).toString();
+        String pid = first.getCell(2).toString();
+        System.out.println(name + "\t" + id + "\t" + pid);
 
         // 获取sheet的行数
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -229,18 +229,29 @@ public class ExcelUtil {
             // 获取当前行的数据
             row = sheet.getRow(i);
             map = new HashMap<String, Object>();
-            map.put(id, row.getCell(0).toString());
-            map.put(name, row.getCell(1).toString());
-            map.put(age, row.getCell(2).toString());
+            map.put(name, row.getCell(0).toString());
+            map.put(id, row.getCell(1).toString());
+            map.put(pid, row.getCell(2).toString());
             list.add(map);
+            System.out.println(row.getCell(0).toString() + "\t\t" + row.getCell(1).toString() + "\t\t" + row.getCell(2).toString());
         }
         return list;
     }
 
     // 测试导入
     public static void main(String[] args) {
-        List<Map<String, Object>> list = importExcel1("D:\\student.xlsx");
-        list.forEach(System.out::println);
+        List<Map<String, Object>> list = importExcel1("D:\\county.xlsx");
+        System.out.println(list.size());
+        
+        // List<String> collect = list.stream().map(m ->
+        // m.get("pid").toString()).distinct().collect(Collectors.toList());
+        // for (String string : collect) {
+        // List<Map<String, Object>> collect2 = list.stream().filter(m ->
+        // string.equals(m.get("pid"))).collect(Collectors.toList());
+        // for (Map<String, Object> map : collect2) {
+        // System.out.println(map);
+        // }
+        // }
     }
 
 }
