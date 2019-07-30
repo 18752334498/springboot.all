@@ -16,7 +16,14 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.yucong.AllApp;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = AllApp.class)
 public class EventTest {
     private static final String SERVER = "localhost:2181";
     private final int SESSION_TIMEOUT = 30000;
@@ -86,6 +93,15 @@ public class EventTest {
 
         // 设置节点的cache
         final NodeCache nodeCache = new NodeCache(client, "/test", false);// 是否对数据进行压缩
+
+        // buildInitial: 初始化的时候获取node的值并且缓存
+        nodeCache.start(true);
+        if (nodeCache.getCurrentData() != null) {
+            System.out.println("节点的初始化数据为：" + new String(nodeCache.getCurrentData().getData()));
+        } else {
+            System.out.println("节点初始化数据为空。。。");
+        }
+
         nodeCache.getListenable().addListener(new NodeCacheListener() {
             @Override
             public void nodeChanged() throws Exception {

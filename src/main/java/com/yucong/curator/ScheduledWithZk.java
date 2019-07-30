@@ -13,6 +13,9 @@ public class ScheduledWithZk {
     @Autowired
     private ZkUtil zkUtil;
 
+    @Autowired
+    private Person person;
+
     @PostConstruct
     public void task() {
         zkUtil.LoopExecuteTask("/test/schedule", new ZkUtil.CallBack() {
@@ -20,7 +23,8 @@ public class ScheduledWithZk {
             public void process() {
                 System.out.println(Thread.currentThread().getName() + ":  scheduled task . . . ");
                 try {
-					Thread.sleep(300000);
+                    Thread.sleep(10000);
+                    System.out.println(person);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -6,6 +6,8 @@ import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.CuratorFrameworkFactory.Builder;
+import org.apache.curator.framework.recipes.cache.NodeCache;
+import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.retry.BoundedExponentialBackoffRetry;
 import org.springframework.util.StringUtils;
@@ -34,7 +36,7 @@ public class ZkUtil {
             return "";
         }
         byte[] data = client.getData().forPath(node);
-        return new String(data);
+        return new String(data, "gbk");// 在zooInspector添加汉字，这里要gbk接收
     }
 
     /**
@@ -66,6 +68,27 @@ public class ZkUtil {
             return;
         }
         client.delete().guaranteed().deletingChildrenIfNeeded().forPath(node);
+    }
+
+
+    // 添加监听
+    public void addDataWatcher(String node, final ZkDataOp op) {
+        try {
+            final NodeCache cache = new NodeCache(client, node);
+            cache.start(true);
+            cache.getListenable().addListener(new NodeCacheListener() {
+                public void nodeChanged() throws Exception {
+                    op.process(cache);
+                }
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 添加监听回调事件，事件主业务
+    public interface ZkDataOp {
+        void process(NodeCache nodeCache) throws Exception;
     }
 
     public void LoopExecuteTask(final String path, final CallBack callBack) {
