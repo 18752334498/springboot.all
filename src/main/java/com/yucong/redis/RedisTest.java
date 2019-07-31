@@ -1,9 +1,5 @@
 package com.yucong.redis;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
 import redis.clients.jedis.Jedis;
 
 public class RedisTest {
@@ -15,18 +11,6 @@ public class RedisTest {
 
         System.out.println(jedis.get("five"));
         jedis.close();
-    }
-
-    private String read() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("D:\\five.sql"));
-
-        String str = "";
-        while ((str = br.readLine()) != null) {
-            if (str.contains("values")) {
-                
-            }
-        }
-        return "";
     }
 
 }
